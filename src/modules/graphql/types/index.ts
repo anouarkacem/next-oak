@@ -1,2 +1,2 @@
-export * from "./Phase";
-export * from "./Task";
+export * from "./phase";
+export * from "./task";
