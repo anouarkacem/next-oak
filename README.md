@@ -9,6 +9,8 @@ npm install
 npm run dev
 
 ```
+Node version: 14.15.1
+NPM version: 8.14.0
 
 No need for database this project stores data in-memory
 
