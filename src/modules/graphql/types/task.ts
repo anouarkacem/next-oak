@@ -20,6 +20,10 @@ export const Task = objectType({
 
 // QUERIES
 
+/**
+ * Get Task Query
+ * @returns Task[]
+ */
 export const getTasks = extendType({
   type: "Query",
   definition(t) {
@@ -34,6 +38,12 @@ export const getTasks = extendType({
 
 // MUTATIONS
 
+/**
+ * Create Task Mutation
+ * @param phaseId number
+ * @param title string
+ * @return Task
+ */
 export const createTask = extendType({
   type: "Mutation",
   definition(t) {
