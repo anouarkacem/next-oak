@@ -1,8 +1,9 @@
 import { makeSchema } from "nexus";
 import { join } from "path";
+import * as types from "@modules/graphql/types";
 
 const schema = makeSchema({
-  types: [],
+  types,
   contextType: {
     module: join(process.cwd(), "./src/types/context.d.ts"),
     export: "Context",
