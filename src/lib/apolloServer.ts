@@ -5,6 +5,7 @@ import { context } from "../types/context.d";
 const server = new ApolloServer({
   schema,
   context,
+  introspection: true,
 });
 
 export { server };
