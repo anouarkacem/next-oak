@@ -2,6 +2,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { server } from "@lib/apolloServer";
 import NextCors from "nextjs-cors";
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 const serverStart = server.start();
 
 export default async function handler(
