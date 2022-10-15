@@ -96,3 +96,20 @@ export const confirmTask = extendType({
   },
 });
 
+/**
+ * Undo Task Mutation
+ * @param id number, task id
+ * @return Task[]
+ */
+export const undoTask = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.list.field("undoTask", {
+      type: "Task",
+      args: {
+        id: nonNull(intArg())!,
+      },
+      resolve(_, args, ctx) {},
+    });
+  },
+});
