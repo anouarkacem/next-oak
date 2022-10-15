@@ -1,6 +1,7 @@
+import { previousTask, Task } from "@modules/db";
 import { extendType, intArg, nonNull, objectType, stringArg } from "nexus";
 
-export const Task = objectType({
+export const TaskType = objectType({
   name: "Task",
   definition(t) {
     t.nonNull.int("id", {
@@ -67,3 +68,31 @@ export const createTask = extendType({
     });
   },
 });
+
+/**
+ * Confirm Task Mutation
+ * @param id number, task id
+ * @return Task[]
+ */
+export const confirmTask = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.list.field("confirmTask", {
+      type: "Task",
+      args: { id: nonNull(intArg()) },
+      resolve(_, args, ctx) {
+        return ctx.db.tasks.map((t: Task) => {
+          if (t.id === args.id) {
+            if (previousTask(ctx, args.id)?.done !== true)
+              // TODO: Handle Errors
+              throw "CANNOT CONFIRM TASK, PREVIOUS STEP MUST BE MARKED AS DONE";
+            t.done = true;
+            return t;
+          }
+          return t;
+        });
+      },
+    });
+  },
+});
+
