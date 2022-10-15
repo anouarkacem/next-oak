@@ -15,8 +15,9 @@ NPM version: 8.14.0
 
 No need for database this project stores data in-memory
 
-Open [http://localhost:3000/api/graphql](http://localhost:3000/graphql) with your browser to see the result.
-
+Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with your browser to see the result.
+or
+Open [https://studio.apollographql.com/sandbox/explorer](https://studio.apollographql.com/sandbox/explorer) add [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
 ## STEPS
 
 - Create a phase and get its ID `id:1`
