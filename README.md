@@ -6,29 +6,97 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No need for database this project stores data in-memory
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000/api/graphql](http://localhost:3000/graphql) with your browser to see the result.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Create Phase Mutation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+mutation CreatePhase($title: String!) {
+  createPhase(title: $title) {
+    id
+    title
+    done
+    tasks {
+      id
+      phaseId
+      done
+      title
+    }
+  }
+}
+```
 
-## Learn More
+## Get Phases Query
 
-To learn more about Next.js, take a look at the following resources:
+```
+query Phases {
+  phases {
+    id
+    title
+    done
+    tasks {
+      id
+      title
+      phaseId
+      done
+    }
+  }
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Create Task Mutation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+mutation CreateTask($phaseId: Int!, $createTaskTitle: String!, $done: Boolean) {
+  createTask(phaseId: $phaseId, title: $createTaskTitle) {
+    id
+    title
+    done
+    phaseId
+  }
+}
+```
 
-## Deploy on Vercel
+## Get Tasks Query
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+query Tasks {
+  tasks {
+    id
+    title
+    done
+    phaseId
+  }
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Confirm Task Mutation
+
+```
+mutation ConfirmTask($confirmTasksId: Int!) {
+  confirmTask(id: $confirmTasksId) {
+    id
+    title
+    done
+    phaseId
+  }
+}
+```
+
+## Undo Task Mutation
+
+```
+mutation UndoTask($undoTaskId: Int!) {
+  undoTask(id: $undoTaskId) {
+    id
+    title
+    done
+    phaseId
+  }
+}
+```
