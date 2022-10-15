@@ -54,7 +54,7 @@ export const previousTask = (ctx: Context, id: number) => {
  * @returns
  */
 export const findPhase = (ctx: Context, id: number) => {
-  const phase = ctx.db.phases.find((p) => p.id === id);
+  const phase = ctx.db.phases.find((p: Phase) => p.id === id);
   if (!phase) throw "422 PHASE NOT FOUND";
   return phase;
 };
