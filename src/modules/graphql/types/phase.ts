@@ -18,3 +18,7 @@ export const Phase = objectType({
     });
   },
 });
+
+// QUERIES
+
+// Mutations
