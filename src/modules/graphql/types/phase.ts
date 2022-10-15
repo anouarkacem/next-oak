@@ -23,6 +23,11 @@ export const Phase = objectType({
 });
 
 // QUERIES
+
+/**
+ * Get Phase Query
+ * @returns Phase[]
+ */
 export const getPhases = extendType({
   type: "Query",
   definition(t) {
@@ -37,6 +42,11 @@ export const getPhases = extendType({
 
 // MUTATIONS
 
+/**
+ * Create Phase Mutation
+ * @param title string
+ * @return Phase
+ */
 export const createPhase = extendType({
   type: "Mutation",
   definition(t) {
