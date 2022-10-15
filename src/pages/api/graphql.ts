@@ -16,7 +16,7 @@ export default async function handler(
 ) {
   // Credentials: expose the response to the frontend JavaScript
   // Origin: Allow apollo studio
-  NextCors(req, res, {
+  await NextCors(req, res, {
     credentials: true,
     origin: ["https://studio.apollographql.com"],
   });
@@ -26,4 +26,5 @@ export default async function handler(
   await server.createHandler({
     path: "/api/graphql",
   })(req, res);
+  return;
 }
