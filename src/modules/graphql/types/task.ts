@@ -1,9 +1,4 @@
-import {
-  findPhase,
-  previousTask,
-  previousTaskConfirmed,
-  Task,
-} from "@modules/db";
+import { findPhase, previousTaskConfirmed, Task } from "@modules/db";
 import { extendType, intArg, nonNull, objectType, stringArg } from "nexus";
 
 export const TaskType = objectType({
