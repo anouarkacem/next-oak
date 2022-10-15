@@ -1,4 +1,4 @@
-import { previousTask, Task } from "@modules/db";
+import { findPhase, previousTask, Task } from "@modules/db";
 import { extendType, intArg, nonNull, objectType, stringArg } from "nexus";
 
 export const TaskType = objectType({
@@ -55,6 +55,9 @@ export const createTask = extendType({
         title: nonNull(stringArg())!,
       },
       resolve: (_, args, ctx) => {
+        //TODO: Handle Errors
+        if (findPhase(ctx, args.phaseId).done)
+          throw "PHASE IS DONE, CANNOT ADD A NEW TASK";
         const id: number = ctx.db.tasks.length + 1;
         const task = {
           id,
