@@ -1,4 +1,4 @@
-import { extendType, objectType } from "nexus";
+import { extendType, intArg, nonNull, objectType, stringArg } from "nexus";
 
 export const Task = objectType({
   name: "Task",
@@ -33,3 +33,27 @@ export const getTasks = extendType({
 });
 
 // MUTATIONS
+
+export const createTask = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.field("createTask", {
+      type: "Task",
+      args: {
+        phaseId: nonNull(intArg())!,
+        title: nonNull(stringArg())!,
+      },
+      resolve: (_, args, ctx) => {
+        const id: number = ctx.db.tasks.length + 1;
+        const task = {
+          id,
+          title: args.title,
+          phaseId: args.phaseId,
+          done: false,
+        };
+        ctx.db.tasks.push(task);
+        return task;
+      },
+    });
+  },
+});
