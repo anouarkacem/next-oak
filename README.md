@@ -9,6 +9,7 @@ npm install
 npm run dev
 
 ```
+
 Node version: 14.15.1
 NPM version: 8.14.0
 
@@ -18,17 +19,17 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/graphql) with you
 
 ## STEPS
 
-- Create a phase and get its ID (id:1)
+- Create a phase and get its ID `id:1`
 
-- Create a task with phase ID & title example (phaseId: 1, title: task 1)
+- Create a task with phase ID & title example :`{phaseId: 1, title: "task 1"}`
 
-- Query tasks and check the result (id:1, phaseId:1, done:false, title: task 1)
+- Query tasks and check the result: `{id:1, phaseId:1, done:false, title: "task 1"}`
 
-- Query Phase to check it (id:1, title:Phase 1, done: false, tasks:[{id:1, phaseId:1, done:false, title: task 1}])
+- Query Phase to check it: `{id:1, title:"Phase 1", done: false, tasks:[{id:1, phaseId:1, done:false, title: task 1}]}`
 
-- Confirm Task id:1 => done: true if no previous task, if previous check if its confirmed
+- Confirm Task `id:1` => `done: true` if no previous task, if there are previous tasks, it checks if its confirmed
 
-- Undo Task id:5 checks if there is next tasks and undo them if they are done
+- Undo Task `id:5` checks if there is next tasks and undo them if they are done
 
 - Phases are marked as done when all the tasks under that phase are marked as done
 
