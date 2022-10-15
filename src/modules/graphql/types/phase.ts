@@ -1,3 +1,4 @@
+import { Task } from "@modules/db";
 import { extendType, nonNull, objectType, stringArg } from "nexus";
 
 export const Phase = objectType({
@@ -14,7 +15,9 @@ export const Phase = objectType({
     });
     t.list.field("tasks", {
       type: "Task",
-      resolve: (_, args, ctx) => {},
+      resolve: (_, args, ctx) => {
+        return ctx.db.tasks.filter((t: Task) => t.phaseId === _.id);
+      },
     });
   },
 });
