@@ -86,11 +86,13 @@ export const confirmTask = extendType({
       resolve(_, args, ctx) {
         return ctx.db.tasks.map((t: Task) => {
           if (t.id === args.id) {
-            if (previousTask(ctx, args.id)?.done !== true)
+            if (previousTask(ctx, args.id)?.done !== true) {
               // TODO: Handle Errors
               throw "CANNOT CONFIRM TASK, PREVIOUS STEP MUST BE MARKED AS DONE";
-            t.done = true;
-            return t;
+            } else {
+              t.done = true;
+              return t;
+            }
           }
           return t;
         });
