@@ -41,10 +41,12 @@ export const findTask = (ctx: Context, id: number) => {
  * @param id number, task id
  * @returns Task
  */
-export const previousTask = (ctx: Context, id: number) => {
+export const previousTaskConfirmed = (ctx: Context, id: number): boolean => {
   if (id > 1) {
-    return findTask(ctx, id - 1);
+    return findTask(ctx, id - 1).done;
   }
+  // First task should pass
+  return true;
 };
 
 /**

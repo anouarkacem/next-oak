@@ -1,4 +1,9 @@
-import { findPhase, previousTask, Task } from "@modules/db";
+import {
+  findPhase,
+  previousTask,
+  previousTaskConfirmed,
+  Task,
+} from "@modules/db";
 import { extendType, intArg, nonNull, objectType, stringArg } from "nexus";
 
 export const TaskType = objectType({
@@ -86,7 +91,7 @@ export const confirmTask = extendType({
       resolve(_, args, ctx) {
         return ctx.db.tasks.map((t: Task) => {
           if (t.id === args.id) {
-            if (previousTask(ctx, args.id)?.done !== true) {
+            if (previousTaskConfirmed(ctx, args.id) !== true) {
               // TODO: Handle Errors
               throw "CANNOT CONFIRM TASK, PREVIOUS STEP MUST BE MARKED AS DONE";
             } else {
