@@ -10,7 +10,13 @@ export const Phase = objectType({
     t.nonNull.string("title", {
       description: "Phase title/name",
     });
-    t.boolean("done", {
+    t.field("done", {
+      type: "Boolean",
+      resolve: (_, args, ctx) => {
+        return ctx.db.tasks
+          .filter((t: Task) => t.phaseId === _.id)
+          .every((t: Task) => t.done === true);
+      },
       description: "Phase status: ACHIEVED:true, NOT ACHIEVED:false",
     });
     t.list.field("tasks", {
