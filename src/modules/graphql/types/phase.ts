@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { extendType, objectType } from "nexus";
 
 export const Phase = objectType({
   name: "Phase",
@@ -20,5 +20,16 @@ export const Phase = objectType({
 });
 
 // QUERIES
+export const PhaseQuery = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("phases", {
+      type: "Phase",
+      resolve: (_, args, ctx) => {
+        return ctx.db.phases;
+      },
+    });
+  },
+});
 
-// Mutations
+// MUTATIONS
