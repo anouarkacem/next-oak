@@ -109,7 +109,18 @@ export const undoTask = extendType({
       args: {
         id: nonNull(intArg())!,
       },
-      resolve(_, args, ctx) {},
+      resolve(_, args, ctx) {
+        // Since one task in the middle of the phase is undone
+        // All next tasks should be done for verification purposes
+        // TODO: Use Authentication (JWT) to undo a task
+        return ctx.db.tasks.map((t: Task) => {
+          if (t.id >= args.id) {
+            t.done = false;
+            return t;
+          }
+          return t;
+        });
+      },
     });
   },
 });
