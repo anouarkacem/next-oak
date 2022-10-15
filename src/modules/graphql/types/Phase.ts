@@ -12,5 +12,9 @@ export const Phase = objectType({
     t.boolean("done", {
       description: "Phase status: ACHIEVED:true, NOT ACHIEVED:false",
     });
+    t.list.field("tasks", {
+      type: "Task",
+      resolve: (_, args, ctx) => {},
+    });
   },
 });
