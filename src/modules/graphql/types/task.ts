@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { extendType, objectType } from "nexus";
 
 export const Task = objectType({
   name: "Task",
@@ -17,3 +17,19 @@ export const Task = objectType({
     });
   },
 });
+
+// QUERIES
+
+export const getTasks = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.field("tasks", {
+      type: "Task",
+      resolve: (_, args, ctx) => {
+        return ctx.db.tasks;
+      },
+    });
+  },
+});
+
+// MUTATIONS
